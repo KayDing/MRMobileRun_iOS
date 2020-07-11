@@ -10,6 +10,8 @@
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
+        NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSLog(@"App home path: %@", documentPath);
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
 }

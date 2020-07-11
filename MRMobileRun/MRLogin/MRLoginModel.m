@@ -42,19 +42,19 @@
         {
             
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            NSLog(@"%@", responseObject);
+            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"StudentId"] forKey:@"studentID"];
             
-            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"student_id"] forKey:@"studentID"];
-            
-            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"token"] forKey:@"token"];
+            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"Token"] forKey:@"token"];
             //存储学号
-            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"class_id"] forKey:@"class_id"];
+//            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"class_id"] forKey:@"class_id"];
             //储存班级号
             
-            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"nickname"] forKey:@"nickname"];
+            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"Nickname"] forKey:@"nickname"];
             //存储昵称
-            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"avatar_url"] forKey:@"avatar_url"];
+            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"AvatarUrl"] forKey:@"avatar_url"];
 //            存储头像
-            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"signature"] forKey:@"signature"];
+            [user setObject:[[responseObject objectForKey:@"data"] objectForKey:@"Signature"] forKey:@"signature"];
 //            存储个性签名
             [user setObject:password forKey:@"password"];
             [user synchronize];
@@ -97,7 +97,7 @@
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     HttpClient *client = [HttpClient defaultClient];
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic setObject:[user objectForKey:@"studentID"] forKey:@"student_id"];
+    [dic setObject:[user objectForKey:@"studentID"] forKey:@"studentID"];
     NSDictionary *head = @{@"Content-Type":@"application/x-www-form-urlencoded",@"token":[user objectForKey:@"token"]};
     [client requestWithHead:kCycleYesOrNoInviteSuccess method:HttpRequestGet parameters:dic head:head prepareExecute:^
      {
